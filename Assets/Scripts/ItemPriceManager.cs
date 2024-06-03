@@ -31,6 +31,8 @@ public class ItemPriceManager : MonoBehaviour
         bombAmount = PlayerPrefs.GetInt("BombAmount", 0);
         extraStepAmount = PlayerPrefs.GetInt("ExtraStepAmount", 0);
         colorBombAmount = PlayerPrefs.GetInt("ColorBombAmount", 0);
+        myMoney = PlayerPrefs.GetInt("TicketNumber");
+        myMoneyText.text = myMoney.ToString();
     }
 
     // Update is called once per frame
@@ -42,6 +44,6 @@ public class ItemPriceManager : MonoBehaviour
         extraStepAmountText.text = extraStepAmount.ToString();
         colorBombPriceText.text = colorBombPrice.ToString();
         colorBombAmountText.text = colorBombAmount.ToString();
-        myMoneyText.text = myMoney.ToString();
+
     }
 }

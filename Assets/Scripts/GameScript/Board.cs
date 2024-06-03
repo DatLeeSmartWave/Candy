@@ -510,7 +510,7 @@ public class Board : MonoBehaviour
                 }
             }
         }
-        ItemPriceManager.Instance.myMoney += 100;
+        //ItemPriceManager.Instance.myMoney += 100;
         StartCoroutine(DecreaseRowCor2());
         if(EndGameManager.instance.setWinGame == true)
         {

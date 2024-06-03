@@ -69,6 +69,8 @@ public class GameObjectLV1 : MonoBehaviour
         if (clickBuyRowBombCount >= 1 && ItemPriceManager.Instance.myMoney >= ItemPriceManager.Instance.bombPrice)
         {
             ItemPriceManager.Instance.myMoney -= ItemPriceManager.Instance.bombPrice;
+            PlayerPrefs.SetInt("TicketNumber", ItemPriceManager.Instance.myMoney);
+            ItemPriceManager.Instance.myMoneyText.text = ItemPriceManager.Instance.myMoney.ToString();
             ItemPriceManager.Instance.bombAmount += 1;
             //isClickBuyRowBomb = true;
             //isClickBuyColorBomb = false;
@@ -93,6 +95,8 @@ public class GameObjectLV1 : MonoBehaviour
         if (ItemPriceManager.Instance.myMoney >= ItemPriceManager.Instance.extraStepPrice)
         {
             ItemPriceManager.Instance.myMoney -= ItemPriceManager.Instance.extraStepPrice;
+            PlayerPrefs.SetInt("TicketNumber", ItemPriceManager.Instance.myMoney);
+            ItemPriceManager.Instance.myMoneyText.text = ItemPriceManager.Instance.myMoney.ToString();
             ItemPriceManager.Instance.extraStepAmount += 1;
         }
     }
@@ -116,6 +120,8 @@ public class GameObjectLV1 : MonoBehaviour
         if (clickBuyColorBombCount >= 1 && ItemPriceManager.Instance.myMoney >= ItemPriceManager.Instance.colorBombPrice)
         {
             ItemPriceManager.Instance.myMoney -= ItemPriceManager.Instance.colorBombPrice;
+            PlayerPrefs.SetInt("TicketNumber", ItemPriceManager.Instance.myMoney);
+            ItemPriceManager.Instance.myMoneyText.text = ItemPriceManager.Instance.myMoney.ToString();
             ItemPriceManager.Instance.colorBombAmount += 1;
             //isClickBuyColorBomb = true;
             //isClickBuyRowBomb = false;

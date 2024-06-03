@@ -10700,15 +10700,15 @@ MonoBehaviour:
   myMoneyText: {fileID: 2144618439}
   myMoney: 0
   bombPriceText: {fileID: 611052046}
-  bombPrice: 200
+  bombPrice: 1
   bombAmountText: {fileID: 330465865}
   bombAmount: 0
   extraStepPriceText: {fileID: 946983306}
-  extraStepPrice: 50
+  extraStepPrice: 1
   extraStepAmountText: {fileID: 2030360500}
   extraStepAmount: 0
   colorBombPriceText: {fileID: 1281578445}
-  colorBombPrice: 100
+  colorBombPrice: 1
   colorBombAmountText: {fileID: 273919832}
   colorBombAmount: 0
 --- !u!1 &1947234638
