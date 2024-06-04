@@ -114,7 +114,7 @@ public class GameObjectLV1 : MonoBehaviour
         }
     }
 
-    public void BuyColorBomb()
+    public void BuyColorBomb()  
     {
         clickBuyColorBombCount++;
         if (clickBuyColorBombCount >= 1 && ItemPriceManager.Instance.myMoney >= ItemPriceManager.Instance.colorBombPrice)
