@@ -80,6 +80,8 @@ public class Candy : MonoBehaviour
                 arrow.transform.parent = this.transform;
                 arrow.transform.parent.GetComponent<SpriteRenderer>().color = colorAlpha;
                 ItemPriceManager.Instance.bombAmount -= 1;
+                //GameObjectLV1.Instance.isUseRowBomb = false;
+                //isClickBuyColorBomb = true;
             }
         }
         else if (isClickColorBomb && Input.GetMouseButtonDown(0))
@@ -92,6 +94,7 @@ public class Candy : MonoBehaviour
                 arrow.transform.parent = this.transform;
                 arrow.transform.parent.GetComponent<SpriteRenderer>().color = colorAlpha;
                 ItemPriceManager.Instance.colorBombAmount -= 1;
+                //GameObjectLV1.Instance.isUseColorBomb = false;
             }
         }
     }

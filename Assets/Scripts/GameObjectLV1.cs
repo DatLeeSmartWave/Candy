@@ -137,7 +137,7 @@ public class GameObjectLV1 : MonoBehaviour
             {
                 isClickBuyRowBomb = false;
                 isClickBuyColorBomb = true;
-            }
+            } 
         }
     }
 
