@@ -23,7 +23,7 @@ public class GetStarManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (GameObjectLV1.Instance.isWinPanel == true) {
+        if (GameObjectLV1.Instance.winPanel.activeSelf == true) {
             if (!spawnStar) {
                 SpawnStar();
                 StartCoroutine(ShowExitAndNextMapBt());
@@ -52,6 +52,7 @@ public class GetStarManager : MonoBehaviour {
     }
 
     public void SpawnStar() {
+        Debug.Log("Star");
         if (ScoreManager.Instance.score >= Level_Data.Instance.dScore1) {
             StartCoroutine(SpawnStar1());
         }

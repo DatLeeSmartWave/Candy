@@ -1,0 +1,5 @@
+C:/New folder/New folder (2)/Candy/.utmp/RelWithDebInfo/4p1q4t6e/arm64-v8a/CMakeFiles/edit_cache.dir
+C:/New folder/New folder (2)/Candy/.utmp/RelWithDebInfo/4p1q4t6e/arm64-v8a/CMakeFiles/rebuild_cache.dir
+C:/New folder/New folder (2)/Candy/.utmp/RelWithDebInfo/4p1q4t6e/arm64-v8a/FramePacing/CMakeFiles/swappywrapper.dir
+C:/New folder/New folder (2)/Candy/.utmp/RelWithDebInfo/4p1q4t6e/arm64-v8a/FramePacing/CMakeFiles/edit_cache.dir
+C:/New folder/New folder (2)/Candy/.utmp/RelWithDebInfo/4p1q4t6e/arm64-v8a/FramePacing/CMakeFiles/rebuild_cache.dir
