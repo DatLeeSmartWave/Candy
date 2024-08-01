@@ -51,7 +51,7 @@ public class GetStarManager : MonoBehaviour {
         }
     }
 
-    public void SpawnStar() {
+    public void SpawnStar() {    
         if (ScoreManager.Instance.score >= Level_Data.Instance.dScore1) {
             StartCoroutine(SpawnStar1());
         }
