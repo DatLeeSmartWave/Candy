@@ -14,6 +14,7 @@ public class HeartAmountManager : MonoBehaviour
     private void Start()
     {
         heartAmount = PlayerPrefs.GetInt("HeartAmount", 2);
+        PlayerPrefs.SetInt("HeartAmount", heartAmount);
     }
     private void Update()
     {
