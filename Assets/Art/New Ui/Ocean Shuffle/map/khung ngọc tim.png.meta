@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      "khung ng\u1ECDc tim_0": -5431627121230517115
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

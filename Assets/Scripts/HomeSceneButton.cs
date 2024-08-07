@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class HomeSceneButton : MonoBehaviour
 {
-    [SerializeField] RectTransform shopPanel;
+    //[SerializeField] RectTransform shopPanel;
     [SerializeField] TextMeshProUGUI ticketNumberText;
     int ticketNumber;
     Vector2 firstPos;
 
     void Start()
     {
-        firstPos = shopPanel.transform.position;
+        //firstPos = shopPanel.transform.position;
         ticketNumber = PlayerPrefs.GetInt("TicketNumber");
         ticketNumberText.text = ticketNumber.ToString();
     }
