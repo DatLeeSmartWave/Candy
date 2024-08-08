@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.SceneManagement;
-public class GameObjectLV1 : MonoBehaviour
-{
+public class GameObjectLV1 : MonoBehaviour {
     public static GameObjectLV1 Instance;
     public GameObject shopPanel, closeTabButton, musicButton, soundButton, exitButton, losePanel, winPanel, fourBtSettingPanel;
     public GameObject bombShop, extraStepShop, colorBombshop, switchShop, lolipopBomShop;
+    [SerializeField] TextMeshProUGUI heartNumberText;
+    int heartNumber;
     public bool isClickBuyRowBomb;
     public bool isClickBuyColorBomb;
     private int clickBuyRowBombCount = 0;
@@ -16,29 +18,30 @@ public class GameObjectLV1 : MonoBehaviour
     public bool isUseColorBomb = true;
     public bool isUseExtraStep = true;
 
-    private void Awake()
-    {
+    private void Awake() {
         Instance = this;
     }
-    public void ExitGame()
-    {
+
+    private void Start() {
+        heartNumber = PlayerPrefs.GetInt("HeartAmount");
+        heartNumberText.text = heartNumber.ToString();
+    }
+
+    public void ExitGame() {
         Application.Quit();
     }
 
-    public void ShopPanelAppear()
-    {
+    public void ShopPanelAppear() {
         shopPanel.SetActive(true);
         losePanel.SetActive(false);
         winPanel.SetActive(false);
     }
 
-    public void ShopPanelDisappear()
-    {
+    public void ShopPanelDisappear() {
         shopPanel.SetActive(false);
     }
 
-    public void FourBtDisappear()
-    {
+    public void FourBtDisappear() {
         //closeTabButton.SetActive(false);
         //musicButton.SetActive(false);
         //soundButton.SetActive(false);
@@ -46,8 +49,7 @@ public class GameObjectLV1 : MonoBehaviour
         fourBtSettingPanel.SetActive(false);
     }
 
-    public void FourBtAppear()
-    {
+    public void FourBtAppear() {
         //closeTabButton.SetActive(true);
         //musicButton.SetActive(true);
         //soundButton.SetActive(true);
@@ -55,19 +57,16 @@ public class GameObjectLV1 : MonoBehaviour
         fourBtSettingPanel.SetActive(true);
     }
 
-    public void BombShopAppear()
-    {
+    public void BombShopAppear() {
         bombShop.SetActive(true);
         losePanel.SetActive(false);
         winPanel.SetActive(false);
         FourBtDisappear();
     }
 
-    public void BuyRowBomb()
-    {
+    public void BuyRowBomb() {
         clickBuyRowBombCount++;
-        if (clickBuyRowBombCount >= 1 && ItemPriceManager.Instance.myMoney >= ItemPriceManager.Instance.bombPrice)
-        {
+        if (clickBuyRowBombCount >= 1 && ItemPriceManager.Instance.myMoney >= ItemPriceManager.Instance.bombPrice) {
             ItemPriceManager.Instance.myMoney -= ItemPriceManager.Instance.bombPrice;
             PlayerPrefs.SetInt("TicketNumber", ItemPriceManager.Instance.myMoney);
             ItemPriceManager.Instance.myMoneyText.text = ItemPriceManager.Instance.myMoney.ToString();
@@ -77,23 +76,18 @@ public class GameObjectLV1 : MonoBehaviour
         }
     }
 
-    public void UseRowBomb()
-    {
-        if (isUseRowBomb)
-        {
+    public void UseRowBomb() {
+        if (isUseRowBomb) {
             clickUseRowBomb++;
-            if (clickUseRowBomb >= 1 && ItemPriceManager.Instance.bombAmount >= 1)
-            {
+            if (clickUseRowBomb >= 1 && ItemPriceManager.Instance.bombAmount >= 1) {
                 isClickBuyRowBomb = true;
                 isClickBuyColorBomb = false;
             }
         }
     }
 
-    public void BuyExtraStep()
-    {
-        if (ItemPriceManager.Instance.myMoney >= ItemPriceManager.Instance.extraStepPrice)
-        {
+    public void BuyExtraStep() {
+        if (ItemPriceManager.Instance.myMoney >= ItemPriceManager.Instance.extraStepPrice) {
             ItemPriceManager.Instance.myMoney -= ItemPriceManager.Instance.extraStepPrice;
             PlayerPrefs.SetInt("TicketNumber", ItemPriceManager.Instance.myMoney);
             ItemPriceManager.Instance.myMoneyText.text = ItemPriceManager.Instance.myMoney.ToString();
@@ -101,12 +95,9 @@ public class GameObjectLV1 : MonoBehaviour
         }
     }
 
-    public void UseExtraStep()
-    {
-        if (isUseExtraStep == true)
-        {
-            if (ItemPriceManager.Instance.extraStepAmount >= 1)
-            {
+    public void UseExtraStep() {
+        if (isUseExtraStep == true) {
+            if (ItemPriceManager.Instance.extraStepAmount >= 1) {
                 Level_Data.Instance.dMove += 1;
                 EndGameManager.instance.counter.text = "" + Level_Data.Instance.dGoalScore;
                 ItemPriceManager.Instance.extraStepAmount -= 1;
@@ -114,11 +105,9 @@ public class GameObjectLV1 : MonoBehaviour
         }
     }
 
-    public void BuyColorBomb()  
-    {
+    public void BuyColorBomb() {
         clickBuyColorBombCount++;
-        if (clickBuyColorBombCount >= 1 && ItemPriceManager.Instance.myMoney >= ItemPriceManager.Instance.colorBombPrice)
-        {
+        if (clickBuyColorBombCount >= 1 && ItemPriceManager.Instance.myMoney >= ItemPriceManager.Instance.colorBombPrice) {
             ItemPriceManager.Instance.myMoney -= ItemPriceManager.Instance.colorBombPrice;
             PlayerPrefs.SetInt("TicketNumber", ItemPriceManager.Instance.myMoney);
             ItemPriceManager.Instance.myMoneyText.text = ItemPriceManager.Instance.myMoney.ToString();
@@ -128,26 +117,21 @@ public class GameObjectLV1 : MonoBehaviour
         }
     }
 
-    public void UseColorBomb()
-    {
-        if (isUseColorBomb)
-        {
+    public void UseColorBomb() {
+        if (isUseColorBomb) {
             clickUseColorBomb++;
-            if (clickUseColorBomb >= 1 && ItemPriceManager.Instance.colorBombAmount >= 1)
-            {
+            if (clickUseColorBomb >= 1 && ItemPriceManager.Instance.colorBombAmount >= 1) {
                 isClickBuyRowBomb = false;
                 isClickBuyColorBomb = true;
-            } 
+            }
         }
     }
 
-    public void BombShopDisappear()
-    {
+    public void BombShopDisappear() {
         bombShop.SetActive(false);
     }
 
-    public void ExtraStepShopAppear()
-    {
+    public void ExtraStepShopAppear() {
         extraStepShop.SetActive(true);
         colorBombshop.SetActive(false);
         losePanel.SetActive(false);
@@ -155,90 +139,75 @@ public class GameObjectLV1 : MonoBehaviour
         FourBtDisappear();
     }
 
-    public void ExtraStepShopDisppear()
-    {
+    public void ExtraStepShopDisppear() {
         extraStepShop.SetActive(false);
     }
 
-    public void ColorBombshopAppear()
-    {
+    public void ColorBombshopAppear() {
         colorBombshop.SetActive(true);
         losePanel.SetActive(false);
         winPanel.SetActive(false);
         FourBtDisappear();
     }
 
-    public void ColorBombshopDisappear()
-    {
+    public void ColorBombshopDisappear() {
         colorBombshop.SetActive(false);
     }
 
-    public void SwitchShopAppear()
-    {
+    public void SwitchShopAppear() {
         switchShop.SetActive(true);
         losePanel.SetActive(false);
         winPanel.SetActive(false);
         FourBtDisappear();
     }
 
-    public void SwitchShopDisappear()
-    {
+    public void SwitchShopDisappear() {
         switchShop.SetActive(false);
     }
 
-    public void LolipopBomShopAppear()
-    {
+    public void LolipopBomShopAppear() {
         lolipopBomShop.SetActive(true);
         losePanel.SetActive(false);
         winPanel.SetActive(false);
         FourBtDisappear();
     }
 
-    public void LolipopBomShopDisappear()
-    {
+    public void LolipopBomShopDisappear() {
         lolipopBomShop.SetActive(false);
     }
 
-    public void LosePanelAppear()
-    {
+    public void LosePanelAppear() {
         //shopPanel.SetActive(false);
         losePanel.SetActive(true);
         winPanel.SetActive(false);
         FourBtDisappear();
     }
 
-    public void WinPanelAppear()
-    {
+    public void WinPanelAppear() {
         isWinPanel = true;
-        if (isWinPanel)
-        {
+        if (isWinPanel) {
             winPanel.SetActive(true);
         }
         FourBtDisappear();
     }
 
-    public void WinPanelDisappear()
-    {
+    public void WinPanelDisappear() {
         winPanel.SetActive(false);
     }
 
-    public void LosePaneDisappear()
-    {
+    public void LosePaneDisappear() {
         losePanel.SetActive(false);
     }
 
-    public void LoadLv1()
-    {
+    public void LoadLv1() {
         SceneManager.LoadScene("Level1");
     }
 
-    public void LoadSceneBtn(string sceneName)
-    {
+    public void LoadSceneBtn(string sceneName) {
         SceneManager.LoadScene(sceneName);
     }
 
-    public void ReLoadCurrentMap()
-    {
+    public void ReLoadCurrentMap() {
         SceneManager.LoadScene("Level Test 1");
     }
 }
