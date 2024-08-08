@@ -232,9 +232,9 @@ public class GameObjectLV1 : MonoBehaviour
         SceneManager.LoadScene("Level1");
     }
 
-    public void LoadMainMenu()
+    public void LoadSceneBtn(string sceneName)
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene(sceneName);
     }
 
     public void ReLoadCurrentMap()
