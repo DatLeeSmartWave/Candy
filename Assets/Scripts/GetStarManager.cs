@@ -6,7 +6,7 @@ public class GetStarManager : MonoBehaviour {
     public static GetStarManager instance;
     public int scoreToGetOneStar, scoreToGetTwoStar, scoreToGetThreeStar;
     public GameObject yellowStar1, yellowStar2, yellowStar3;
-    public Transform btExit, btNextMap;
+    public Transform btExit, btNextMap, btReplay;
     public Vector2 btSize;
     private bool hasChangeSize = false;
     public Transform yellowStar1Pos, yellowStar2Pos, yellowStar3Pos;
@@ -67,6 +67,7 @@ public class GetStarManager : MonoBehaviour {
         yield return new WaitForSeconds(2);
         btExit.DOScale(btSize, 1.5f);
         btNextMap.DOScale(btSize, 1.5f);
+        btReplay.DOScale(btSize, 1.5f);
     }
 
     private IEnumerator WaitAndStopTweens(params Tween[] tweens) {
