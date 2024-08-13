@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour {
-    public GameObject btMusicOn, btMusicOff;
+    public GameObject btMusicOn, btMusicOff, btnVibrateOn, btnVibrateOff;
     public AudioSource audioSource;
     public AudioClip bgMusic;
     public AudioClip winSound;
@@ -41,6 +41,16 @@ public class SoundManager : MonoBehaviour {
             BtMusicOnAppear();
         } else {
             BtMusicOnDisappear();
+        }
+    }
+
+    public void VibrateBtn() {
+        if (btnVibrateOn.activeSelf) {
+            btnVibrateOn.SetActive(false);
+            btnVibrateOff.SetActive(true);
+        } else {
+            btnVibrateOn.SetActive(true);
+            btnVibrateOff.SetActive(false);
         }
     }
 }

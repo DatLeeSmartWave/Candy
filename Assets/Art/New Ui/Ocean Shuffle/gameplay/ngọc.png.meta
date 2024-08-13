@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      "ng\u1ECDc_0": 624953653594229581
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -417,6 +417,7 @@ public class Board : MonoBehaviour {
                 if (allCandys[i, j] != null) {
                     DestroyMatchesAt(i, j);
                     DOTween.Clear();
+                    FindObjectOfType<SoundEffectManager>().DestroyNormalCandySound();
                 }
             }
         }
