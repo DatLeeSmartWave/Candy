@@ -1748,6 +1748,7 @@ MonoBehaviour:
   colorBombshop: {fileID: 0}
   switchShop: {fileID: 0}
   lolipopBomShop: {fileID: 0}
+  heartNumberText: {fileID: 0}
   isClickBuyRowBomb: 0
   isClickBuyColorBomb: 0
   isWinPanel: 0
@@ -2062,7 +2063,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 674336d75bc5c1e498aa03730ad2acf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shopPanel: {fileID: 1611233231}
   ticketNumberText: {fileID: 1330482655}
 --- !u!1001 &1098837721
 PrefabInstance:
@@ -3259,7 +3259,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1611233231
 RectTransform:
   m_ObjectHideFlags: 0
