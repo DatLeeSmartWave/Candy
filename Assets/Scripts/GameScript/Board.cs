@@ -520,6 +520,7 @@ public class Board : MonoBehaviour {
                             allCandys[i, k].GetComponent<Candy>().row = j;
                             // Set that spot to be null
                             allCandys[i, k] = null;
+                            FindObjectOfType<SoundEffectManager>().DestroyNormalCandySound();
                             /// Break out of the loop
                             break;
                         }
