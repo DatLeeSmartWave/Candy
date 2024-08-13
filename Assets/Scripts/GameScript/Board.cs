@@ -5,8 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public enum GameState
-{
+public enum GameState {
     wait,
     move,
     win,
@@ -14,8 +13,7 @@ public enum GameState
     pause
 }
 
-public class Board : MonoBehaviour
-{
+public class Board : MonoBehaviour {
 
     public static Board Instance;
     public AudioSource audioSource;
@@ -75,10 +73,8 @@ public class Board : MonoBehaviour
     [Range(0, 1)]
     public float refillDelay;
 
-    private void Awake()
-    {
-        if (Instance == null)
-        {
+    private void Awake() {
+        if (Instance == null) {
             Instance = this;
         }
         GetLevelData();
@@ -95,35 +91,29 @@ public class Board : MonoBehaviour
         allCandys = new GameObject[width, height];
         audioSource = GetComponent<AudioSource>();
         Setup();
-    } 
+    }
 
     // GetLevelData
-    private void GetLevelData(){
+    private void GetLevelData() {
         goalScore = levelData.dGoalScore;
         width = levelData.dWidth;
         height = levelData.dHeight;
         boardLayout = levelData.dBoardLayout;
     }
 
-    public void GenerateBlankSpace()
-    {
-        for (int i = 0; i < boardLayout.Length; i++)
-        {
-            if (boardLayout[i].tileKind == TileKind.Blank)
-            {
+    public void GenerateBlankSpace() {
+        for (int i = 0; i < boardLayout.Length; i++) {
+            if (boardLayout[i].tileKind == TileKind.Blank) {
                 blankSpaces[boardLayout[i].x, boardLayout[i].y] = true;
             }
         }
     }
 
-    public void GenerateBreakableTiles()
-    {
+    public void GenerateBreakableTiles() {
         // Look at all the tilse in the layout
-        for (int i = 0; i < boardLayout.Length; i++)
-        {
+        for (int i = 0; i < boardLayout.Length; i++) {
             // If a tiles is a "Breakable" tile
-            if (boardLayout[i].tileKind == TileKind.Breakable)
-            {
+            if (boardLayout[i].tileKind == TileKind.Breakable) {
                 // Create a "Breakable tiles at that position
                 Vector2 tempPosition = new(boardLayout[i].x, boardLayout[i].y);
                 GameObject tile = Instantiate(breakableTilePrefab, tempPosition, Quaternion.identity);
@@ -132,14 +122,11 @@ public class Board : MonoBehaviour
         }
     }
 
-    public void GenerateChocolateTiles()
-    {
+    public void GenerateChocolateTiles() {
         // Look at all the tilse in the layout
-        for (int i = 0; i < boardLayout.Length; i++)
-        {
+        for (int i = 0; i < boardLayout.Length; i++) {
             // If a tiles is a "Chocolate" tile
-            if (boardLayout[i].tileKind == TileKind.Chocolate)
-            {
+            if (boardLayout[i].tileKind == TileKind.Chocolate) {
                 // Create a "Chocolate" tiles at that position
                 Vector2 tempPosition = new(boardLayout[i].x, boardLayout[i].y);
                 GameObject tile = Instantiate(chocolatePrefab, tempPosition, Quaternion.identity);
@@ -148,14 +135,11 @@ public class Board : MonoBehaviour
         }
     }
 
-    private void GenerateBiscuitTiles()
-    {
+    private void GenerateBiscuitTiles() {
         // Look at all the tilse in the layout
-        for (int i = 0; i < boardLayout.Length; i++)
-        {
+        for (int i = 0; i < boardLayout.Length; i++) {
             // If a tiles is a "Biscuit" tile
-            if (boardLayout[i].tileKind == TileKind.Biscuit)
-            {
+            if (boardLayout[i].tileKind == TileKind.Biscuit) {
                 // Create a "Biscuit" tiles at that position
                 Vector2 tempPosition = new(boardLayout[i].x, boardLayout[i].y);
                 GameObject tile = Instantiate(biscuitTilePrefab, tempPosition, Quaternion.identity);
@@ -164,14 +148,11 @@ public class Board : MonoBehaviour
         }
     }
 
-    private void GenerateLockTiles()
-    {
+    private void GenerateLockTiles() {
         // Look at all the tilse in the layout
-        for (int i = 0; i < boardLayout.Length; i++)
-        {
+        for (int i = 0; i < boardLayout.Length; i++) {
             // If a tiles is a "Lock" tile
-            if (boardLayout[i].tileKind == TileKind.Lock)
-            {
+            if (boardLayout[i].tileKind == TileKind.Lock) {
                 // Create a "Lock" tiles at that position
                 Vector2 tempPosition = new(boardLayout[i].x, boardLayout[i].y);
                 GameObject tile = Instantiate(lockTilePrefab, tempPosition, Quaternion.identity);
@@ -180,26 +161,21 @@ public class Board : MonoBehaviour
         }
     }
 
-    private void Setup()
-    {
+    private void Setup() {
         GenerateBlankSpace();
         GenerateBreakableTiles();
         GenerateChocolateTiles();
         GenerateLockTiles();
         GenerateBiscuitTiles();
 
-        for (int i = 0; i < width; i++)
-        {
-            for (int j = 0; j < height; j++)
-            {
-                if (chocolateTiles[i, j] || biscuitTiles[i, j])
-                {
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                if (chocolateTiles[i, j] || biscuitTiles[i, j]) {
                     Vector2 tempPosition = new Vector2(i, j + offSet);
                     Vector2 tilePosition = new Vector2(i, j);
                     GameObject boardTile = Instantiate(boardTilePrefab, tilePosition, Quaternion.identity);
                 }
-                if (!blankSpaces[i, j] && !chocolateTiles[i, j] && !biscuitTiles[i, j])
-                {
+                if (!blankSpaces[i, j] && !chocolateTiles[i, j] && !biscuitTiles[i, j]) {
                     Vector2 tempPosition = new Vector2(i, j + offSet);
                     Vector2 tilePosition = new Vector2(i, j);
                     GameObject boardTile = Instantiate(boardTilePrefab, tilePosition, Quaternion.identity);
@@ -209,8 +185,7 @@ public class Board : MonoBehaviour
                     int candyToUse = UnityEngine.Random.Range(0, candys.Length);
 
                     int maxIterations = 0;
-                    while (MatchesAt(i, j, candys[candyToUse]) && maxIterations < 100)
-                    {
+                    while (MatchesAt(i, j, candys[candyToUse]) && maxIterations < 100) {
                         candyToUse = UnityEngine.Random.Range(0, candys.Length);
                         maxIterations++;
                     }
@@ -225,51 +200,36 @@ public class Board : MonoBehaviour
             }
         }
 
-        if (IsDeadlocked())
-        {
+        if (IsDeadlocked()) {
             StartCoroutine(ShuffleBoard());
         }
 
     }
 
-    private bool MatchesAt(int column, int row, GameObject piece)
-    {
-        if (column > 1 && row > 1)
-        {
-            if (allCandys[column - 1, row] != null && allCandys[column - 2, row] != null)
-            {
-                if (piece.CompareTag(allCandys[column - 1, row].tag) && piece.CompareTag(allCandys[column - 2, row].tag))
-                {
+    private bool MatchesAt(int column, int row, GameObject piece) {
+        if (column > 1 && row > 1) {
+            if (allCandys[column - 1, row] != null && allCandys[column - 2, row] != null) {
+                if (piece.CompareTag(allCandys[column - 1, row].tag) && piece.CompareTag(allCandys[column - 2, row].tag)) {
                     return true;
                 }
             }
 
-            if (allCandys[column, row - 1] != null && allCandys[column, row - 2] != null)
-            {
-                if (piece.CompareTag(allCandys[column, row - 1].tag) && piece.CompareTag(allCandys[column, row - 2].tag))
-                {
+            if (allCandys[column, row - 1] != null && allCandys[column, row - 2] != null) {
+                if (piece.CompareTag(allCandys[column, row - 1].tag) && piece.CompareTag(allCandys[column, row - 2].tag)) {
                     return true;
                 }
             }
-        }
-        else if (column <= 1 || row <= 1)
-        {
-            if (row > 1)
-            {
-                if (allCandys[column, row - 1] != null && allCandys[column, row - 2])
-                {
-                    if (piece.CompareTag(allCandys[column, row - 1].tag) && piece.CompareTag(allCandys[column, row - 2].tag))
-                    {
+        } else if (column <= 1 || row <= 1) {
+            if (row > 1) {
+                if (allCandys[column, row - 1] != null && allCandys[column, row - 2]) {
+                    if (piece.CompareTag(allCandys[column, row - 1].tag) && piece.CompareTag(allCandys[column, row - 2].tag)) {
                         return true;
                     }
                 }
             }
-            if (column > 1)
-            {
-                if (allCandys[column - 1, row] != null && allCandys[column - 2, row])
-                {
-                    if (piece.CompareTag(allCandys[column - 1, row].tag) && piece.CompareTag(allCandys[column - 2, row].tag))
-                    {
+            if (column > 1) {
+                if (allCandys[column - 1, row] != null && allCandys[column - 2, row]) {
+                    if (piece.CompareTag(allCandys[column - 1, row].tag) && piece.CompareTag(allCandys[column - 2, row].tag)) {
                         return true;
                     }
                 }
@@ -278,22 +238,17 @@ public class Board : MonoBehaviour
         return false;
     }
 
-    private bool ColumnOrRow()
-    {
+    private bool ColumnOrRow() {
         int numberHorizontal = 0;
         int numberVertical = 0;
         Candy firstPiece = findMatches.currentMatches[0].GetComponent<Candy>();
-        if (firstPiece != null)
-        {
-            foreach (GameObject currentPiece in findMatches.currentMatches)
-            {
+        if (firstPiece != null) {
+            foreach (GameObject currentPiece in findMatches.currentMatches) {
                 Candy candy = currentPiece.GetComponent<Candy>();
-                if (candy.row == firstPiece.row)
-                {
+                if (candy.row == firstPiece.row) {
                     numberHorizontal++;
                 }
-                if (candy.column == firstPiece.column)
-                {
+                if (candy.column == firstPiece.column) {
                     numberVertical++;
                 }
             }
@@ -301,37 +256,25 @@ public class Board : MonoBehaviour
         return (numberVertical == 5 || numberHorizontal == 5);
     }
 
-    private void CheckToMakeBombs()
-    {
-        if (findMatches.currentMatches.Count == 4 || findMatches.currentMatches.Count == 7)
-        {
+    private void CheckToMakeBombs() {
+        if (findMatches.currentMatches.Count == 4 || findMatches.currentMatches.Count == 7) {
             findMatches.CheckBomb();
         }
-        if (findMatches.currentMatches.Count == 5 || findMatches.currentMatches.Count == 8)
-        {
-            if (ColumnOrRow())
-            {
+        if (findMatches.currentMatches.Count == 5 || findMatches.currentMatches.Count == 8) {
+            if (ColumnOrRow()) {
                 // Make a color bomb
                 //Is the current candy matched?
-                if (currentCandy != null)
-                {
-                    if (currentCandy.isMatched)
-                    {
-                        if (!currentCandy.isColorBomb)
-                        {
+                if (currentCandy != null) {
+                    if (currentCandy.isMatched) {
+                        if (!currentCandy.isColorBomb) {
                             currentCandy.isMatched = false;
                             currentCandy.MakeColorBomb();
                         }
-                    }
-                    else
-                    {
-                        if (currentCandy.otherCandy != null)
-                        {
+                    } else {
+                        if (currentCandy.otherCandy != null) {
                             Candy otherCandy = currentCandy.otherCandy.GetComponent<Candy>();
-                            if (otherCandy.isMatched)
-                            {
-                                if (!otherCandy.isColorBomb)
-                                {
+                            if (otherCandy.isMatched) {
+                                if (!otherCandy.isColorBomb) {
                                     otherCandy.isMatched = false;
                                     otherCandy.MakeColorBomb();
                                 }
@@ -339,30 +282,20 @@ public class Board : MonoBehaviour
                         }
                     }
                 }
-            }
-            else
-            {
+            } else {
                 // Make a adjcent bomb
                 //Is thr current candy matched?
-                if (currentCandy != null)
-                {
-                    if (currentCandy.isMatched)
-                    {
-                        if (!currentCandy.isAdjacentBomb)
-                        {
+                if (currentCandy != null) {
+                    if (currentCandy.isMatched) {
+                        if (!currentCandy.isAdjacentBomb) {
                             currentCandy.isMatched = false;
                             currentCandy.MakeAdjacentBomb();
                         }
-                    }
-                    else
-                    {
-                        if (currentCandy.otherCandy != null)
-                        {
+                    } else {
+                        if (currentCandy.otherCandy != null) {
                             Candy otherCandy = currentCandy.otherCandy.GetComponent<Candy>();
-                            if (otherCandy.isMatched)
-                            {
-                                if (!otherCandy.isAdjacentBomb)
-                                {
+                            if (otherCandy.isMatched) {
+                                if (!otherCandy.isAdjacentBomb) {
                                     otherCandy.isMatched = false;
                                     otherCandy.MakeAdjacentBomb();
                                 }
@@ -375,34 +308,24 @@ public class Board : MonoBehaviour
         }
     }
 
-    public void BomRow(int row)
-    {
-        for (int i = 0; i < width; i++)
-        {
-            for (int j = 0; j < height; j++)
-            {
-                if (biscuitTiles[i, j])
-                {
+    public void BomRow(int row) {
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                if (biscuitTiles[i, j]) {
                     biscuitTiles[i, row].TakeDamage(1);
-                    if(biscuitTiles[i, row].hitPoints <= 0)
-                    {
+                    if (biscuitTiles[i, row].hitPoints <= 0) {
                         biscuitTiles[i, row] = null;
                     }
                 }
             }
         }
     }
-    public void BombColumn(int column)
-    {
-        for (int i = 0; i < width; i++)
-        {
-            for (int j = 0; j < height; j++)
-            {
-                if (biscuitTiles[i, j])
-                {
+    public void BombColumn(int column) {
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                if (biscuitTiles[i, j]) {
                     biscuitTiles[column, i].TakeDamage(1);
-                    if(biscuitTiles[column, i].hitPoints <= 0)
-                    {
+                    if (biscuitTiles[column, i].hitPoints <= 0) {
                         biscuitTiles[column, i] = null;
                     }
                 }
@@ -411,73 +334,66 @@ public class Board : MonoBehaviour
     }
 
     // Destroy viên kẹo và đặt ô đó thành null
-    private void DestroyMatchesAt(int column, int row)
-    {
-        if (allCandys[column, row].GetComponent<Candy>().isMatched)
-        {
+    private void DestroyMatchesAt(int column, int row) {
+        if (allCandys[column, row].GetComponent<Candy>().isMatched) {
 
             DameBiscuit(column, row);
             DameChocolate(column, row);
             //DameBreakable(column, row);
-            
+
             // How many elements are in the matched pieces list from findmatches?
-            if (findMatches.currentMatches.Count >= 4)
-            {
+            if (findMatches.currentMatches.Count >= 4) {
                 CheckToMakeBombs();
             }
 
             // Does tile need to break?
-            if (breakableTiles[column, row] != null)
-            {
+            if (breakableTiles[column, row] != null) {
                 // If it does, take damege
                 breakableTiles[column, row].TakeDamage(1);
-                if (breakableTiles[column, row].hitPoints <= 0)
-                {
+                if (breakableTiles[column, row].hitPoints <= 0) {
                     breakableTiles[column, row] = null;
                 }
             }
 
-            if (lockTiles[column, row] != null)
-            {
+            if (lockTiles[column, row] != null) {
                 // If it does, take damege
                 lockTiles[column, row].TakeDamage(1);
-                if (lockTiles[column, row].hitPoints <= 0)
-                {
+                if (lockTiles[column, row].hitPoints <= 0) {
                     lockTiles[column, row] = null;
                 }
             }
 
             #region Destroy Effect
-                if (allCandys[column, row].CompareTag("Blue Candy"))
-                {
-                    GameObject particle = Instantiate(blueDestroyEffect, allCandys[column, row].transform.position, Quaternion.identity);
-                    Destroy(particle, CandyDestroyTime);
-                }
-                if (allCandys[column, row].CompareTag("Green Candy"))
-                {
-                    GameObject particle = Instantiate(greenDestroyEffect, allCandys[column, row].transform.position, Quaternion.identity);
-                    Destroy(particle, CandyDestroyTime);
-                }
-                if (allCandys[column, row].CompareTag("Orange Candy"))
-                {
-                    GameObject particle = Instantiate(orangeDestroyEffect, allCandys[column, row].transform.position, Quaternion.identity);
-                    Destroy(particle, CandyDestroyTime);
-                }
-                if (allCandys[column, row].CompareTag("Red Candy"))
-                {
-                    GameObject particle = Instantiate(redDestroyEffect, allCandys[column, row].transform.position, Quaternion.identity);
-                    Destroy(particle, CandyDestroyTime);
-                }
-                if (allCandys[column, row].CompareTag("Purple Candy"))
-                {
-                    GameObject particle = Instantiate(purpleDestroyEffect, allCandys[column, row].transform.position, Quaternion.identity);
-                    Destroy(particle, CandyDestroyTime);
-                }
-                if (allCandys[column, row].CompareTag("Yellow Candy"))
-                {
-                    GameObject particle = Instantiate(yellowDestroyEffect, allCandys[column, row].transform.position, Quaternion.identity);
-                    Destroy(particle, CandyDestroyTime);
-                }
+            if (allCandys[column, row].CompareTag("Blue Candy")) {
+                GameObject particle = Instantiate(blueDestroyEffect, allCandys[column, row].transform.position, Quaternion.identity);
+                FindObjectOfType<SoundEffectManager>().DestroyNormalCandySound();
+                Destroy(particle, CandyDestroyTime);
+            }
+            if (allCandys[column, row].CompareTag("Green Candy")) {
+                GameObject particle = Instantiate(greenDestroyEffect, allCandys[column, row].transform.position, Quaternion.identity);
+                FindObjectOfType<SoundEffectManager>().DestroyNormalCandySound();
+                Destroy(particle, CandyDestroyTime);
+            }
+            if (allCandys[column, row].CompareTag("Orange Candy")) {
+                GameObject particle = Instantiate(orangeDestroyEffect, allCandys[column, row].transform.position, Quaternion.identity);
+                FindObjectOfType<SoundEffectManager>().DestroyNormalCandySound();
+                Destroy(particle, CandyDestroyTime);
+            }
+            if (allCandys[column, row].CompareTag("Red Candy")) {
+                GameObject particle = Instantiate(redDestroyEffect, allCandys[column, row].transform.position, Quaternion.identity);
+                FindObjectOfType<SoundEffectManager>().DestroyNormalCandySound();
+                Destroy(particle, CandyDestroyTime);
+            }
+            if (allCandys[column, row].CompareTag("Purple Candy")) {
+                GameObject particle = Instantiate(purpleDestroyEffect, allCandys[column, row].transform.position, Quaternion.identity);
+                FindObjectOfType<SoundEffectManager>().DestroyNormalCandySound();
+                Destroy(particle, CandyDestroyTime);
+            }
+            if (allCandys[column, row].CompareTag("Yellow Candy")) {
+                GameObject particle = Instantiate(yellowDestroyEffect, allCandys[column, row].transform.position, Quaternion.identity);
+                FindObjectOfType<SoundEffectManager>().DestroyNormalCandySound();
+                Destroy(particle, CandyDestroyTime);
+            }
             #endregion
 
             Destroy(allCandys[column, row]);
@@ -487,24 +403,18 @@ public class Board : MonoBehaviour
     }
 
     // Check có ô nào trên bảng bị null ko, nếu ko null thì gọi hàm DestroyMatchesAt()
-    public void DestroyMatches()
-    {
-        if (hintManager != null)
-        {
+    public void DestroyMatches() {
+        if (hintManager != null) {
             hintManager.DestroyHints();
         }
 
-        if (findMatches.currentMatches.Count >= 4)
-        {
+        if (findMatches.currentMatches.Count >= 4) {
             CheckToMakeBombs();
         }
         findMatches.currentMatches.Clear();
-        for (int i = 0; i < width; i++)
-        {
-            for (int j = 0; j < height; j++)
-            {
-                if (allCandys[i, j] != null)
-                {
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                if (allCandys[i, j] != null) {
                     DestroyMatchesAt(i, j);
                     DOTween.Clear();
                 }
@@ -512,8 +422,7 @@ public class Board : MonoBehaviour
         }
         //ItemPriceManager.Instance.myMoney += 100;
         StartCoroutine(DecreaseRowCor2());
-        if(EndGameManager.instance.setWinGame == true)
-        {
+        if (EndGameManager.instance.setWinGame == true) {
             PlayerPrefs.SetInt("MyMoney", ItemPriceManager.Instance.myMoney);
             PlayerPrefs.SetInt("BombAmount", ItemPriceManager.Instance.bombAmount);
             PlayerPrefs.SetInt("ExtraStepAmount", ItemPriceManager.Instance.extraStepAmount);
@@ -522,99 +431,73 @@ public class Board : MonoBehaviour
         }
     }
 
-    private void DameBiscuit(int column, int row)
-    {
-        if (column > 0)
-        {
-            if (biscuitTiles[column - 1, row])
-            {
+    private void DameBiscuit(int column, int row) {
+        if (column > 0) {
+            if (biscuitTiles[column - 1, row]) {
                 biscuitTiles[column - 1, row].TakeDamage(1);
-                if (biscuitTiles[column - 1, row].hitPoints <= 0)
-                {
+                if (biscuitTiles[column - 1, row].hitPoints <= 0) {
                     biscuitTiles[column - 1, row] = null;
                 }
             }
         }
-        if (column < width - 1)
-        {
-            if (biscuitTiles[column + 1, row])
-            {
+        if (column < width - 1) {
+            if (biscuitTiles[column + 1, row]) {
                 biscuitTiles[column + 1, row].TakeDamage(1);
-                if (biscuitTiles[column + 1, row].hitPoints <= 0)
-                {
+                if (biscuitTiles[column + 1, row].hitPoints <= 0) {
                     biscuitTiles[column + 1, row] = null;
                 }
             }
         }
-        if (row > 0)
-        {
-            if (biscuitTiles[column, row - 1])
-            {
+        if (row > 0) {
+            if (biscuitTiles[column, row - 1]) {
                 biscuitTiles[column, row - 1].TakeDamage(1);
-                if (biscuitTiles[column, row - 1].hitPoints <= 0)
-                {
+                if (biscuitTiles[column, row - 1].hitPoints <= 0) {
                     biscuitTiles[column, row - 1] = null;
                 }
             }
         }
-        if (row < height - 1)
-        {
-            if (biscuitTiles[column, row + 1])
-            {
+        if (row < height - 1) {
+            if (biscuitTiles[column, row + 1]) {
                 biscuitTiles[column, row + 1].TakeDamage(1);
-                if (biscuitTiles[column, row + 1].hitPoints <= 0)
-                {
+                if (biscuitTiles[column, row + 1].hitPoints <= 0) {
                     biscuitTiles[column, row + 1] = null;
                 }
             }
         }
     }
 
-    private void DameChocolate(int column, int row)
-    {
-        if (column > 0)
-        {
-            if (chocolateTiles[column - 1, row])
-            {
+    private void DameChocolate(int column, int row) {
+        if (column > 0) {
+            if (chocolateTiles[column - 1, row]) {
                 chocolateTiles[column - 1, row].TakeDamage(1);
-                if (chocolateTiles[column - 1, row].hitPoints <= 0)
-                {
+                if (chocolateTiles[column - 1, row].hitPoints <= 0) {
                     chocolateTiles[column - 1, row] = null;
                 }
                 makeChocolate = false;
             }
         }
-        if (column < width - 1)
-        {
-            if (chocolateTiles[column + 1, row])
-            {
+        if (column < width - 1) {
+            if (chocolateTiles[column + 1, row]) {
                 chocolateTiles[column + 1, row].TakeDamage(1);
-                if (chocolateTiles[column + 1, row].hitPoints <= 0)
-                {
+                if (chocolateTiles[column + 1, row].hitPoints <= 0) {
                     chocolateTiles[column + 1, row] = null;
                 }
                 makeChocolate = false;
             }
         }
-        if (row > 0)
-        {
-            if (chocolateTiles[column, row - 1])
-            {
+        if (row > 0) {
+            if (chocolateTiles[column, row - 1]) {
                 chocolateTiles[column, row - 1].TakeDamage(1);
-                if (chocolateTiles[column, row - 1].hitPoints <= 0)
-                {
+                if (chocolateTiles[column, row - 1].hitPoints <= 0) {
                     chocolateTiles[column, row - 1] = null;
                 }
                 makeChocolate = false;
             }
         }
-        if (row < height - 1)
-        {
-            if (chocolateTiles[column, row + 1])
-            {
+        if (row < height - 1) {
+            if (chocolateTiles[column, row + 1]) {
                 chocolateTiles[column, row + 1].TakeDamage(1);
-                if (chocolateTiles[column, row + 1].hitPoints <= 0)
-                {
+                if (chocolateTiles[column, row + 1].hitPoints <= 0) {
                     chocolateTiles[column, row + 1] = null;
                 }
                 makeChocolate = false;
@@ -622,22 +505,16 @@ public class Board : MonoBehaviour
         }
     }
 
-    private IEnumerator DecreaseRowCor2()
-    {
+    private IEnumerator DecreaseRowCor2() {
         yield return new WaitForSeconds(refillDelay * 0.5f);
-        for (int i = 0; i < width; i++)
-        {
-            for (int j = 0; j < height; j++)
-            {
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
                 // If the cureent spot isn't blank and is empty
-                if (!blankSpaces[i, j] && allCandys[i, j] == null && !chocolateTiles[i, j] && !biscuitTiles[i, j])
-                {
+                if (!blankSpaces[i, j] && allCandys[i, j] == null && !chocolateTiles[i, j] && !biscuitTiles[i, j]) {
                     // Loop from the space abpve to ther top of the column
-                    for (int k = j + 1; k < height; k++)
-                    {
+                    for (int k = j + 1; k < height; k++) {
                         // If a dot is found
-                        if (allCandys[i, k] != null)
-                        {
+                        if (allCandys[i, k] != null) {
                             // Move that do to this empty space
                             allCandys[i, k].GetComponent<Candy>().row = j;
                             // Set that spot to be null
@@ -653,19 +530,14 @@ public class Board : MonoBehaviour
         StartCoroutine(FillBoardCor());
     }
 
-    private void RefillBoard()
-    {
-        for (int i = 0; i < width; i++)
-        {
-            for (int j = 0; j < height; j++)
-            {
-                if (allCandys[i, j] == null && !blankSpaces[i, j] && !chocolateTiles[i, j] && !biscuitTiles[i, j])
-                {
+    private void RefillBoard() {
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                if (allCandys[i, j] == null && !blankSpaces[i, j] && !chocolateTiles[i, j] && !biscuitTiles[i, j]) {
                     Vector2 tempPosition = new Vector2(i, j + offSet);
                     int candyToUse = UnityEngine.Random.Range(0, candys.Length);
                     int maxIterations = 0;
-                    while (MatchesAt(i, j, candys[candyToUse]) && maxIterations < 100)
-                    {
+                    while (MatchesAt(i, j, candys[candyToUse]) && maxIterations < 100) {
                         maxIterations++;
                         candyToUse = UnityEngine.Random.Range(0, candys.Length);
                     }
@@ -681,16 +553,11 @@ public class Board : MonoBehaviour
         }
     }
 
-    private bool MatchesOnBoard()
-    {
-        for (int i = 0; i < width; i++)
-        {
-            for (int j = 0; j < height; j++)
-            {
-                if (allCandys[i, j] != null)
-                {
-                    if (allCandys[i, j].GetComponent<Candy>().isMatched)
-                    {
+    private bool MatchesOnBoard() {
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                if (allCandys[i, j] != null) {
+                    if (allCandys[i, j].GetComponent<Candy>().isMatched) {
                         return true;
                     }
                 }
@@ -699,14 +566,12 @@ public class Board : MonoBehaviour
         return false;
     }
 
-    private IEnumerator FillBoardCor()
-    {
+    private IEnumerator FillBoardCor() {
         yield return new WaitForSeconds(refillDelay);
         RefillBoard();
         yield return new WaitForSeconds(refillDelay);
 
-        while (MatchesOnBoard())
-        {
+        while (MatchesOnBoard()) {
             streakValue++;
             DestroyMatches();
             yield return new WaitForSeconds(2 * refillDelay);
@@ -715,8 +580,7 @@ public class Board : MonoBehaviour
         currentCandy = null;
         CheckToMakeChocolate();
 
-        if (IsDeadlocked())
-        {
+        if (IsDeadlocked()) {
             StartCoroutine(ShuffleBoard());
         }
         yield return new WaitForSeconds(refillDelay);
@@ -726,15 +590,11 @@ public class Board : MonoBehaviour
         streakValue = 1;
     }
 
-    private void CheckToMakeChocolate()
-    {
+    private void CheckToMakeChocolate() {
         // Check the choclotate tiles array
-        for (int i = 0; i < width; i++)
-        {
-            for (int j = 0; j < height; j++)
-            {
-                if (chocolateTiles[i, j] != null && makeChocolate)
-                {
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                if (chocolateTiles[i, j] != null && makeChocolate) {
                     // Call another method to make new chocolate
                     MakeNewChocolate();
                     return;
@@ -743,41 +603,32 @@ public class Board : MonoBehaviour
         }
     }
 
-    private Vector2 CheckForAdjacent(int column, int row)
-    {
-        if (column < width - 1 && allCandys[column + 1, row])
-        {
+    private Vector2 CheckForAdjacent(int column, int row) {
+        if (column < width - 1 && allCandys[column + 1, row]) {
             return Vector2.right;
         }
-        if (column > 0 && allCandys[column - 1, row])
-        {
+        if (column > 0 && allCandys[column - 1, row]) {
             return Vector2.left;
         }
-        if (row < height - 1 && allCandys[column, row + 1])
-        {
+        if (row < height - 1 && allCandys[column, row + 1]) {
             return Vector2.up;
         }
-        if (row > 0 && allCandys[column, row - 1])
-        {
+        if (row > 0 && allCandys[column, row - 1]) {
             return Vector2.down;
         }
         return Vector2.zero;
     }
 
-    private void MakeNewChocolate()
-    {
+    private void MakeNewChocolate() {
         bool chocolate = false;
         int loops = 0;
 
-        while (!chocolate && loops < 200)
-        {
+        while (!chocolate && loops < 200) {
             int newX = UnityEngine.Random.Range(0, width);
             int newY = UnityEngine.Random.Range(0, height);
-            if (chocolateTiles[newX, newY])
-            {
+            if (chocolateTiles[newX, newY]) {
                 Vector2 adjacent = CheckForAdjacent(newX, newY);
-                if (adjacent != Vector2.zero)
-                {
+                if (adjacent != Vector2.zero) {
                     Destroy(allCandys[newX + (int)adjacent.x, newY + (int)adjacent.y]);
                     Vector2 tempPosition = new Vector2(newX + (int)adjacent.x, newY + (int)adjacent.y);
                     GameObject tile = Instantiate(chocolatePrefab, tempPosition, Quaternion.identity);
@@ -790,10 +641,8 @@ public class Board : MonoBehaviour
         }
     }
 
-    private void SwitchPieces(int column, int row, Vector2 direction)
-    {
-        if (allCandys[column + (int)direction.x, row + (int)direction.y] != null)
-        {
+    private void SwitchPieces(int column, int row, Vector2 direction) {
+        if (allCandys[column + (int)direction.x, row + (int)direction.y] != null) {
             // Take the secend piece and save it in a holder
             GameObject holder = allCandys[column + (int)direction.x, row + (int)direction.y];
             // Switching the first candy to be the second popsition
@@ -803,33 +652,23 @@ public class Board : MonoBehaviour
         }
     }
 
-    private bool CheckForMathces()
-    {
-        for (int i = 0; i < width; i++)
-        {
-            for (int j = 0; j < height; j++)
-            {
-                if (allCandys[i, j] != null)
-                {
+    private bool CheckForMathces() {
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                if (allCandys[i, j] != null) {
                     // Make sure that one and two to the right in the board{
-                    if (i < width - 2)
-                    {
+                    if (i < width - 2) {
                         // Check if the candys to the rinht and two to the right exist
-                        if (allCandys[i + 1, j] != null && allCandys[i + 2, j] != null)
-                        {
-                            if (allCandys[i, j].CompareTag(allCandys[i + 1, j].tag) && allCandys[i, j].CompareTag(allCandys[i + 2, j].tag))
-                            {
+                        if (allCandys[i + 1, j] != null && allCandys[i + 2, j] != null) {
+                            if (allCandys[i, j].CompareTag(allCandys[i + 1, j].tag) && allCandys[i, j].CompareTag(allCandys[i + 2, j].tag)) {
                                 return true;
                             }
                         }
                     }
-                    if (j < height - 2)
-                    {
+                    if (j < height - 2) {
                         // Check if candys above exist
-                        if (allCandys[i, j + 1] != null && allCandys[i, j + 2] != null)
-                        {
-                            if (allCandys[i, j].CompareTag(allCandys[i, j + 1].tag) && allCandys[i, j].CompareTag(allCandys[i, j + 2].tag))
-                            {
+                        if (allCandys[i, j + 1] != null && allCandys[i, j + 2] != null) {
+                            if (allCandys[i, j].CompareTag(allCandys[i, j + 1].tag) && allCandys[i, j].CompareTag(allCandys[i, j + 2].tag)) {
                                 return true;
                             }
                         }
@@ -840,11 +679,9 @@ public class Board : MonoBehaviour
         return false;
     }
 
-    public bool SwitchAndCheck(int column, int row, Vector2 direction)
-    {
+    public bool SwitchAndCheck(int column, int row, Vector2 direction) {
         SwitchPieces(column, row, direction);
-        if (CheckForMathces())
-        {
+        if (CheckForMathces()) {
             SwitchPieces(column, row, direction);
             return true;
         }
@@ -852,34 +689,24 @@ public class Board : MonoBehaviour
         return false;
     }
 
-    private bool IsDeadlocked()
-    {
-        if (hintManager != null)
-        {
+    private bool IsDeadlocked() {
+        if (hintManager != null) {
             hintManager.DestroyHints();
         }
-        for (int i = 0; i < width; i++)
-        {
-            for (int j = 0; j < height; j++)
-            {
-                if (allCandys[i, j] != null)
-                {
-                    if (i < width - 1)
-                    {
-                        if (allCandys[i + 1, j] != null)
-                        {
-                            if (SwitchAndCheck(i, j, Vector2.right))
-                            {
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                if (allCandys[i, j] != null) {
+                    if (i < width - 1) {
+                        if (allCandys[i + 1, j] != null) {
+                            if (SwitchAndCheck(i, j, Vector2.right)) {
                                 return false;
                             }
                         }
                     }
-                    if (j < height - 1)
-                    {
-                        if (SwitchAndCheck(i, j, Vector2.up))
-                            {
-                                return false;
-                            }
+                    if (j < height - 1) {
+                        if (SwitchAndCheck(i, j, Vector2.up)) {
+                            return false;
+                        }
                         // if (allCandys[i, j + 1] != null)
                         // {
                         //     if (SwitchAndCheck(i, j, Vector2.up))
@@ -898,38 +725,30 @@ public class Board : MonoBehaviour
         return true;
     }
 
-    public IEnumerator ShuffleBoard()
-    {
+    public IEnumerator ShuffleBoard() {
         yield return new WaitForSeconds(0.5f);
 
         List<GameObject> newBoard = new List<GameObject>();
 
-        for (int i = 0; i < width; i++)
-        {
-            for (int j = 0; j < height; j++)
-            {
-                if (allCandys[i, j] != null)
-                {
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                if (allCandys[i, j] != null) {
                     newBoard.Add(allCandys[i, j]);
                 }
             }
         }
         yield return new WaitForSeconds(0.5f);
         // For every spot on the board
-        for (int i = 0; i < width; i++)
-        {
-            for (int j = 0; j < height; j++)
-            {
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
                 // If this spot shouldn't be blank
-                if (!blankSpaces[i, j] && !chocolateTiles[i, j] && !biscuitTiles[i, j])
-                {
+                if (!blankSpaces[i, j] && !chocolateTiles[i, j] && !biscuitTiles[i, j]) {
                     // Pick a random number
                     int pieceToUse = UnityEngine.Random.Range(0, newBoard.Count);
 
                     // Assign the column and row to the piece
                     int maxIterations = 0;
-                    while (MatchesAt(i, j, newBoard[pieceToUse]) && maxIterations < 100)
-                    {
+                    while (MatchesAt(i, j, newBoard[pieceToUse]) && maxIterations < 100) {
                         pieceToUse = UnityEngine.Random.Range(0, newBoard.Count);
                         maxIterations++;
                     }
@@ -948,8 +767,7 @@ public class Board : MonoBehaviour
         }
 
         // Check if it's still deadlocked
-        if (IsDeadlocked())
-        {
+        if (IsDeadlocked()) {
             StartCoroutine(ShuffleBoard());
         }
 
