@@ -130,10 +130,10 @@ public class IAPManager : Singleton<IAPManager>, IDetailedStoreListener
         Debug.Log("Init purchase success!");
         List<int> ListPosPack = new List<int>();
         // if ListPosPack.Count > 0 clear list
-        if (ListPosPack.Count > 0)
-        {
-            ListPosPack.Clear();
-        }
+        //if (ListPosPack.Count > 0)
+        //{
+        //    ListPosPack.Clear();
+        //}
 
 
         m_StoreController = controller;
