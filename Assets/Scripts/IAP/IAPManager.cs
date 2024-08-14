@@ -13,14 +13,14 @@ public class IAPManager : Singleton<IAPManager>, IDetailedStoreListener
     public HomeSceneButton shopRuby;
     private List<ItemIAP> listItems = new List<ItemIAP>();
 
-    const string PACK_1 = "com.oceashuffle.pack1";
-    const string PACK_2 = "com.oceashuffle.pack2";
-    const string PACK_3 = "com.oceashuffle.pack3";
-    const string PACK_4 = "com.oceashuffle.pack4";
-    const string PACK_5 = "com.oceashuffle.pack5";
-    const string PACK_6 = "com.oceashuffle.pack6";
-    const string PACK_7 = "com.oceashuffle.pack7";
-    const string PACK_8 = "com.oceashuffle.pack8";
+    const string PACK_1 = "com.oceanshuffle.pack1";
+    const string PACK_2 = "com.oceanshuffle.pack2";
+    const string PACK_3 = "com.oceanshuffle.pack3";
+    const string PACK_4 = "com.oceanshuffle.pack4";
+    const string PACK_5 = "com.oceanshuffle.pack5";
+    const string PACK_6 = "com.oceanshuffle.pack6";
+    const string PACK_7 = "com.oceanshuffle.pack7";
+    const string PACK_8 = "com.oceanshuffle.pack8";
 
     IStoreController m_StoreController;
     int numberHint;
