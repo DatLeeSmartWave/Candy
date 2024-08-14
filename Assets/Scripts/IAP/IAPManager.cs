@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Purchasing;
 using System;
 using UnityEngine.Purchasing.Extension;
+using TMPro;
 
 
 
@@ -12,6 +13,7 @@ public class IAPManager : Singleton<IAPManager>, IDetailedStoreListener
 {
     public HomeSceneButton shopRuby;
     private List<ItemIAP> listItems = new List<ItemIAP>();
+    [SerializeField] TextMeshProUGUI noDataText;
 
     const string PACK_1 = "com.oceanshuffle.pack1";
     const string PACK_2 = "com.oceanshuffle.pack2";
@@ -158,6 +160,7 @@ public class IAPManager : Singleton<IAPManager>, IDetailedStoreListener
             }
         }    
         ShopManager.Instance.SetLayoutItemIAP(listItems, ListPosPack);
+        noDataText.gameObject.SetActive(false); 
     }
 
     public void OnInitializeFailed(InitializationFailureReason error, string message)
