@@ -13,14 +13,14 @@ public class IAPManager : Singleton<IAPManager>, IDetailedStoreListener
     public HomeSceneButton shopRuby;
     private List<ItemIAP> listItems = new List<ItemIAP>();
 
-    const string PACK_1 = "com.forestwardens.pack1";
-    const string PACK_2 = "com.forestwardens.pack2";
-    const string PACK_3 = "com.forestwardens.pack3";
-    const string PACK_4 = "com.forestwardens.pack4";
-    const string PACK_5 = "com.forestwardens.pack5";
-    const string PACK_6 = "com.forestwardens.pack6";
-    const string PACK_7 = "com.forestwardens.pack7";
-    const string PACK_8 = "com.forestwardens.pack8";
+    const string PACK_1 = "com.oceashuffle.pack1";
+    const string PACK_2 = "com.oceashuffle.pack2";
+    const string PACK_3 = "com.oceashuffle.pack3";
+    const string PACK_4 = "com.oceashuffle.pack4";
+    const string PACK_5 = "com.oceashuffle.pack5";
+    const string PACK_6 = "com.oceashuffle.pack6";
+    const string PACK_7 = "com.oceashuffle.pack7";
+    const string PACK_8 = "com.oceashuffle.pack8";
 
     IStoreController m_StoreController;
     int numberHint;
@@ -117,7 +117,7 @@ public class IAPManager : Singleton<IAPManager>, IDetailedStoreListener
                 hint = 100;
                 break;
         }
-        shopRuby.BuyTicket(hint);
+        shopRuby.BuyTicket  (hint);
         return PurchaseProcessingResult.Complete;
     }
     public void OnPurchaseFailed(Product product, PurchaseFailureReason failureReason)
