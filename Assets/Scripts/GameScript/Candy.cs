@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Unity.VisualScripting;
 
 public class Candy : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Candy : MonoBehaviour
     public bool isClickRowBomb;
     public bool isClickColorBomb;
     private int doubleClickCount = 0;
+    bool enableMovePiece = true;
 
     [Header("Board Variables")]
     public int column;
@@ -103,6 +105,8 @@ public class Candy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(PlayerPrefs.GetInt("EnableMove")==0)enableMovePiece = true;
+        else enableMovePiece = false;
         findMatches.FindAllMatches();
         if (GameObjectLV1.Instance.isClickBuyColorBomb == true)
         {
@@ -120,7 +124,6 @@ public class Candy : MonoBehaviour
         targetY = row;
 
         #region Move towards the target
-        
         // ( TRÁI || PHẢI )
         if (Mathf.Abs(targetX - transform.position.x) > .1) // Lấy trị tuyệt đối để di chuyển sang trái hay bên phải ( + hoặc - )
         {
@@ -178,6 +181,8 @@ public class Candy : MonoBehaviour
 
     private void OnMouseUp()
     {
+        if (!enableMovePiece) return;
+
         if (board.currentState == GameState.move)
         {
             finalTouchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -187,6 +192,7 @@ public class Candy : MonoBehaviour
 
     void CaculateAngele()
     {
+        if(!enableMovePiece)return;
         if (Mathf.Abs(finalTouchPosition.y - firstTouchPosition.y) > swipeResist || Mathf.Abs(finalTouchPosition.x - firstTouchPosition.x) > swipeResist)
         {
             board.currentState = GameState.wait;
@@ -230,30 +236,39 @@ public class Candy : MonoBehaviour
 
     void MovePieces()
     {
-        // Right Swipe
-        if (swipeAngle > -45 && swipeAngle <= 45 && column < board.width - 1)
-        {
-            MovePiecesActual(Vector2.right);
+        if (!enableMovePiece)return;
+            // Right Swipe
+            if (swipeAngle > -45 && swipeAngle <= 45 && column < board.width - 1) {
+                MovePiecesActual(Vector2.right);
+            }
+            // Left Swipe
+            else if ((swipeAngle > 135 || swipeAngle <= -135) && column > 0) {
+                MovePiecesActual(Vector2.left);
+            }
+            // Up Swipe
+            else if (swipeAngle > 45 && swipeAngle <= 135 && row < board.height - 1) {
+                MovePiecesActual(Vector2.up);
+            }
+            // Down Swipe
+            else if (swipeAngle < -45 && swipeAngle >= -135 && row > 0) {
+                MovePiecesActual(Vector2.down);
+            } else {
+                board.currentState = GameState.move;
+            }
+        //}
+    }
+
+    public void EnableMovePiece() {
+        if (PlayerPrefs.GetInt("EnableMove") == 0) {
+            PlayerPrefs.SetInt("EnableMove", 1);
         }
-        // Left Swipe
-        else if ((swipeAngle > 135 || swipeAngle <= -135) && column > 0)
-        {
-            MovePiecesActual(Vector2.left);
-        }
-        // Up Swipe
-        else if (swipeAngle > 45 && swipeAngle <= 135 && row < board.height - 1)
-        {
-            MovePiecesActual(Vector2.up);
-        }
-        // Down Swipe
-        else if (swipeAngle < -45 && swipeAngle >= -135 && row > 0)
-        {
-            MovePiecesActual(Vector2.down);
-        }
-        else
-        {
-            board.currentState = GameState.move;
-        }
+        else PlayerPrefs.SetInt("EnableMove", 0);
+        //enableMovePiece = false;
+        //if (enableMovePiece) {
+        //    enableMovePiece = false;
+        //} else {
+        //    enableMovePiece = true;
+        //}
     }
 
     public IEnumerator CheckMoveCor()

@@ -635,6 +635,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 621003991}
+        m_TargetAssemblyTypeName: Candy, Assembly-CSharp
+        m_MethodName: EnableMovePiece
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &94446494
 GameObject:
   m_ObjectHideFlags: 0
@@ -4768,6 +4780,7 @@ GameObject:
   m_Component:
   - component: {fileID: 621003989}
   - component: {fileID: 621003990}
+  - component: {fileID: 621003991}
   m_Layer: 0
   m_Name: Game Data
   m_TagString: Untagged
@@ -4814,6 +4827,38 @@ MonoBehaviour:
   dGoalScore: 0
   dSpecialBlockAmount: 0
   jsonDataFile: {fileID: 4900000, guid: 490513ae60ba0324bae191012668da0f, type: 3}
+--- !u!114 &621003991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 621003987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99636212d8ea75d46abef616a4673cef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isClickRowBomb: 0
+  isClickColorBomb: 0
+  column: 0
+  row: 0
+  targetX: 0
+  targetY: 0
+  previousRow: 0
+  previousColumn: 0
+  isMatched: 0
+  otherCandy: {fileID: 0}
+  swipeAngle: 0
+  swipeResist: 1
+  isRowBomb: 0
+  isColumnBomb: 0
+  isColorBomb: 0
+  isAdjacentBomb: 0
+  rowSugar: {fileID: 0}
+  columnSugar: {fileID: 0}
+  colorBomb: {fileID: 0}
+  adjacentMarker: {fileID: 0}
 --- !u!1 &640107580
 GameObject:
   m_ObjectHideFlags: 0
@@ -5942,6 +5987,18 @@ MonoBehaviour:
       - m_Target: {fileID: 5227492845160093099}
         m_TargetAssemblyTypeName: PopupSetting, Assembly-CSharp
         m_MethodName: PanelFadeOut
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 621003991}
+        m_TargetAssemblyTypeName: Candy, Assembly-CSharp
+        m_MethodName: EnableMovePiece
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8658,6 +8715,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 621003991}
+        m_TargetAssemblyTypeName: Candy, Assembly-CSharp
+        m_MethodName: EnableMovePiece
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1296509856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10403,6 +10472,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 621003991}
+        m_TargetAssemblyTypeName: Candy, Assembly-CSharp
+        m_MethodName: EnableMovePiece
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1653808104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10680,6 +10761,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: MainMenu
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 621003991}
+        m_TargetAssemblyTypeName: Candy, Assembly-CSharp
+        m_MethodName: EnableMovePiece
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1676426448
@@ -11358,6 +11451,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 621003991}
+        m_TargetAssemblyTypeName: Candy, Assembly-CSharp
+        m_MethodName: EnableMovePiece
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1760080355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11998,6 +12103,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 621003991}
+        m_TargetAssemblyTypeName: Candy, Assembly-CSharp
+        m_MethodName: EnableMovePiece
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1860487544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12590,6 +12707,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 621003991}
+        m_TargetAssemblyTypeName: Candy, Assembly-CSharp
+        m_MethodName: EnableMovePiece
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1895380731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12940,6 +13069,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1946257002}
         m_TargetAssemblyTypeName: GameObjectLV1, Assembly-CSharp
         m_MethodName: UseExtraStep
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 621003991}
+        m_TargetAssemblyTypeName: Candy, Assembly-CSharp
+        m_MethodName: EnableMovePiece
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13961,6 +14102,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 621003991}
+        m_TargetAssemblyTypeName: Candy, Assembly-CSharp
+        m_MethodName: EnableMovePiece
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &2068472545
 GameObject:
   m_ObjectHideFlags: 0
@@ -14406,6 +14559,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Level Test 1
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 621003991}
+        m_TargetAssemblyTypeName: Candy, Assembly-CSharp
+        m_MethodName: EnableMovePiece
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &2143104713
@@ -14945,6 +15110,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1895870820}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: AudioOpenPopup
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 621003991}
+        m_TargetAssemblyTypeName: Candy, Assembly-CSharp
+        m_MethodName: EnableMovePiece
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15601,6 +15778,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1895870820}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: AudioClosePopup
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 621003991}
+        m_TargetAssemblyTypeName: Candy, Assembly-CSharp
+        m_MethodName: EnableMovePiece
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

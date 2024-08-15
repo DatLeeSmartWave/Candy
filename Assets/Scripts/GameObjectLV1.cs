@@ -210,4 +210,8 @@ public class GameObjectLV1 : MonoBehaviour {
     public void ReLoadCurrentMap() {
         SceneManager.LoadScene("Level Test 1");
     }
+
+    public void EnableMovePiece() {
+        FindObjectOfType<Candy>().EnableMovePiece();
+    }
 }
