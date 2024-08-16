@@ -79,6 +79,7 @@ public class GameObjectLV1 : MonoBehaviour {
     public void UseRowBomb() {
         if (isUseRowBomb) {
             clickUseRowBomb++;
+            PlayerPrefs.SetInt("RowBomb", 1);
             if (clickUseRowBomb >= 1 && ItemPriceManager.Instance.bombAmount >= 1) {
                 isClickBuyRowBomb = true;
                 isClickBuyColorBomb = false;
@@ -120,6 +121,7 @@ public class GameObjectLV1 : MonoBehaviour {
     public void UseColorBomb() {
         if (isUseColorBomb) {
             clickUseColorBomb++;
+            PlayerPrefs.SetInt("ColorBomb", 1);
             if (clickUseColorBomb >= 1 && ItemPriceManager.Instance.colorBombAmount >= 1) {
                 isClickBuyRowBomb = false;
                 isClickBuyColorBomb = true;

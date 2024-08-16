@@ -72,13 +72,14 @@ public class Candy : MonoBehaviour
         Color colorAlpha = new(){a = 0};
 
 
-        if (isClickRowBomb && Input.GetMouseButtonDown(0))
+        if (isClickRowBomb && Input.GetMouseButtonDown(0)&& PlayerPrefs.GetInt("RowBomb") == 1)
         {
             doubleClickCount++;
             if (doubleClickCount == 2)
             {
                 isRowBomb = true;
                 GameObject arrow = Instantiate(rowSugar, transform.position, Quaternion.identity);
+                PlayerPrefs.SetInt("RowBomb", 0);
                 arrow.transform.parent = this.transform;
                 arrow.transform.parent.GetComponent<SpriteRenderer>().color = colorAlpha;
                 ItemPriceManager.Instance.bombAmount -= 1;
@@ -86,13 +87,14 @@ public class Candy : MonoBehaviour
                 //isClickBuyColorBomb = true;
             }
         }
-        else if (isClickColorBomb && Input.GetMouseButtonDown(0))
+        else if (isClickColorBomb && Input.GetMouseButtonDown(0)&& PlayerPrefs.GetInt("ColorBomb") == 1)
         {
             doubleClickCount++;
             if (doubleClickCount == 2)
             {
                 isColorBomb = true;
                 GameObject arrow = Instantiate(colorBomb, transform.position, Quaternion.identity);
+                PlayerPrefs.SetInt("ColorBomb", 0);
                 arrow.transform.parent = this.transform;
                 arrow.transform.parent.GetComponent<SpriteRenderer>().color = colorAlpha;
                 ItemPriceManager.Instance.colorBombAmount -= 1;
@@ -263,12 +265,6 @@ public class Candy : MonoBehaviour
             PlayerPrefs.SetInt("EnableMove", 1);
         }
         else PlayerPrefs.SetInt("EnableMove", 0);
-        //enableMovePiece = false;
-        //if (enableMovePiece) {
-        //    enableMovePiece = false;
-        //} else {
-        //    enableMovePiece = true;
-        //}
     }
 
     public IEnumerator CheckMoveCor()
