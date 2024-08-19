@@ -15,20 +15,12 @@ public class PopupSetting : MonoBehaviour
     public int movePos;
     public static PopupSetting instance { get; private set; }
     public GameObject yellowStar1;
-   //[SerializeField] private Button m_ExitButton;
-
-    //private void OnExit() {
-    //    Debug.Log("OnExit");
-    //    yellowStar1.SetActive(false);
-    //}
-
+   
     private void Awake()
     {
         if (instance != null && instance != this) Destroy(this);
         else instance = this;
-        //m_ExitButton.onClick.AddListener(OnExit);
     }
-    // Phương thức để hiển thị popup và thực hiện animation
     public void PanelFadeIn()
     {
         isFadeIn = true;
@@ -38,7 +30,6 @@ public class PopupSetting : MonoBehaviour
             rectTransform.transform.localPosition = new Vector3(0f, 0f, 0f); // Đặt vị trí ban đầu của panel
             rectTransform.DOAnchorPos(new Vector2(0, movePos), fadeTime, false).SetEase(Ease.OutElastic); // Thực hiện animation dịch chuyển panel vào vị trí mới
             canvasGroup.DOFade(1, fadeTime); // Thực hiện animation làm đậm canvasGroup lên giá trị 1
-                                             //StartCoroutine("ItemsAnimation"); // Bắt đầu coroutine để thực hiện animation cho các items
         }
         else return;
     }
