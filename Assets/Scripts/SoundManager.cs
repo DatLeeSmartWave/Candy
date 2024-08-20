@@ -9,6 +9,11 @@ public class SoundManager : MonoBehaviour {
 
     private const string MusicPrefsKey = "MusicOn";
 
+    private void Awake() {
+        Application.targetFrameRate = 60;
+        QualitySettings.vSyncCount = 0;
+    }
+
     void Start() {
         // Kiểm tra trạng thái bật/tắt nhạc từ PlayerPrefs và áp dụng nó
         bool musicOn = PlayerPrefs.GetInt(MusicPrefsKey, 1) == 1; // Mặc định là bật

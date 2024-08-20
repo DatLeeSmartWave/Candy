@@ -48,6 +48,8 @@ public class Candy : MonoBehaviour
 
     private void Awake()
     {
+        Application.targetFrameRate = 60;
+        QualitySettings.vSyncCount = 0;
         DOTween.SetTweensCapacity(1000,100);
         instance = this;
     }
